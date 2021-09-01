@@ -107,4 +107,4 @@ The code is based on the [DETR](https://github.com/facebookresearch/detr) and [D
 
 ## Contact
 
-For questions and suggestions, file an issue or contact Xiaolong Liu at "liuxl at hust dot edu dot cn".
+For questions and suggestions, please contact Xiaolong Liu at "liuxl at hust dot edu dot cn".
