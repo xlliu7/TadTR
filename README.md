@@ -8,13 +8,14 @@ This repo holds the code for TadTR, described in the technical report:
 ## Introduction
 
 TadTR is an end-to-end Temporal Action Detection TRansformer. It has the following advantages over previous methods:
-- Simple. It adopts a set-prediction pipeline and achieves TAD with a single network.
+- Simple. It adopts a set-prediction pipeline and achieves TAD with a *single network*.
 - Flexible. It removes hand-crafted design such as anchor setting and NMS.
 - Sparse. It produce very sparse detections, thus requiring lower computation cost.
 
 ![](arch.png "Architecture")
 
 ## Updates
+[2021.9.15] Update the performance on THUMOS14. 
 [2021.9.1] Add demo code.
 
 ## TODOs
@@ -35,12 +36,8 @@ TadTR is an end-to-end Temporal Action Detection TRansformer. It has the followi
 
 |Method|Feature|mAP@0.3|mAP@0.4|mAP@0.5|mAP@0.6|mAP@0.7|Avg. mAP|Model|
 | :----: |:----: | :--: | :----: | :---: | :----: |:----: | :----: |:----: |
-|TadTR|I3D 2stream|64.8| 59.5| 50.6| 38.2| 26.5| 47.9|[OneDrive]
-|TadTR-CWF*|I3D 2stream| 67.1 |61.1| 52.0| 39.9| 26.2 |49.3||
-|TadTR-CWF + P-GCN|I3D 2stream|71.7| 65.2| 55.7| 44.0| 29.3 |53.2||
-
-
-\* CWF: cross-window fusion, a simple strategy used for inference.
+|TadTR|I3D 2stream|72.92| 66.86 |58.59| 46.31| 32.32| 55.40|[OneDrive]
+|TadTR|TSN 2stream|64.24| 58.34 |50.01| 40.79| 29.07| 48.49|[OneDrive]
 
 - ActivityNet-1.3
 
