@@ -8,14 +8,18 @@ This repo holds the code for TadTR, described in the technical report:
 ## Introduction
 
 TadTR is an end-to-end Temporal Action Detection TRansformer. It has the following advantages over previous methods:
-- Simple. It adopts a set-prediction pipeline and achieves TAD with a *single network*.
+- Simple. It adopts a set-prediction pipeline and achieves TAD with a *single network*. It does not require a separate proposal generation stage.
 - Flexible. It removes hand-crafted design such as anchor setting and NMS.
-- Sparse. It produce very sparse detections, thus requiring lower computation cost.
+- Sparse. It produces very sparse detections (e.g. 10 on ActivityNet), thus requiring lower computation cost.
+- Strong. As a self-contained temporal action detector, TadTR achieves state-of-the-art performance on HACS and THUMOS14. It is also much stronger than concurrent Transformer-based methods.
+
+We're still improving TadTR. Stay tuned for the future version.
 
 ![](arch.png "Architecture")
 
 ## Updates
-[2021.9.15] Update the performance on THUMOS14. 
+[2021.9.15] Update the performance on THUMOS14.
+
 [2021.9.1] Add demo code.
 
 ## TODOs
