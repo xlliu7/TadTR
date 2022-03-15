@@ -13,11 +13,11 @@ TadTR is an end-to-end Temporal Action Detection TRansformer. It has the followi
 - Sparse. It produces very sparse detections (e.g. 10 on ActivityNet), thus requiring lower computation cost.
 - Strong. As a self-contained temporal action detector, TadTR achieves state-of-the-art performance on HACS and THUMOS14. It is also much stronger than concurrent Transformer-based methods.
 
-We're still improving TadTR. Stay tuned for the future version.
-
 ![](arch.png "Architecture")
 
 ## Updates
+[2022.3] Our new work based on TadTR is accepted to CVPR 2022. It supports fully end-to-end training from RGB images. The code will be released along with the camera ready version.
+
 [2021.9.15] Update the performance on THUMOS14.
 
 [2021.9.1] Add demo code.
@@ -33,21 +33,21 @@ We're still improving TadTR. Stay tuned for the future version.
 
 |Method|Feature|mAP@0.5|mAP@0.75|mAP@0.95|Avg. mAP|Model|
 | :----: |:----: | :--: | :----: | :---: | :----: |:----: |  
-|TadTR|I3D RGB|45.16| 30.70 |11.78 |30.83|[OneDrive]|
+|TadTR|I3D RGB|47.14 |32.11 |10.94| 32.09|[OneDrive]|
 
 
 - THUMOS14
 
 |Method|Feature|mAP@0.3|mAP@0.4|mAP@0.5|mAP@0.6|mAP@0.7|Avg. mAP|Model|
 | :----: |:----: | :--: | :----: | :---: | :----: |:----: | :----: |:----: |
-|TadTR|I3D 2stream|72.92| 66.86 |58.59| 46.31| 32.32| 55.40|[OneDrive]
-|TadTR|TSN 2stream|64.24| 58.34 |50.01| 40.79| 29.07| 48.49|[OneDrive]
+|TadTR|I3D 2stream|74.8 |69.1| 60.1| 46.6| 32.8| 56.7|[OneDrive]
 
 - ActivityNet-1.3
 
 |Method|Feature|mAP@0.5|mAP@0.75|mAP@0.95|Avg. mAP|Model|
 | :----: |:----: | :--: | :----: | :---: | :----: |:----: | 
-|TadTR+BMN|TSN 2stream|50.51| 35.35| 8.18| 34.55|[OneDrive]|
+|TadTR|TSN 2stream|51.29 |34.99| 9.49| 34.64|[OneDrive]|
+|TadTR|TSP|53.62| 37.52| 10.56| 36.75|[OneDrive]|
 
 
 ## Install
