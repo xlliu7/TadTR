@@ -1,9 +1,14 @@
 # TadTR: End-to-end Temporal Action Detection with Transformer
 
-By [Xiaolong Liu](https://github.com/xlliu7), [Qimeng Wang](https://scholar.google.com/citations?user=hi7AeE8AAAAJ), [Yao Hu](https://scholar.google.com/citations?user=LIu7k7wAAAAJ), [Xu Tang](https://scholar.google.com/citations?user=grP24aAAAAAJ), [Song Bai](http://songbai.site), [Xiang Bai](https://scholar.google.com/citations?user=UeltiQ4AAAAJ).
+By [Xiaolong Liu](https://github.com/xlliu7), [Qimeng Wang](https://scholar.google.com/citations?user=hi7AeE8AAAAJ), [Yao Hu](https://scholar.google.com/citations?user=LIu7k7wAAAAJ), [Xu Tang](https://scholar.google.com/citations?user=grP24aAAAAAJ), Shiwei Zhang, [Song Bai](http://songbai.site), [Xiang Bai](https://scholar.google.com/citations?user=UeltiQ4AAAAJ).
 
 This repo holds the code for TadTR, described in the technical report:
 [End-to-end temporal action detection with Transformer](https://arxiv.org/abs/2106.10271)
+
+_The tech report is out-dated. We have significantly improved TadTR since we uploaded it to arxiv. It achives much better performance now. We'll update the arxiv version recently._ 
+
+We have also explored fully end-to-end training from RGB images with TadTR. See our CVPR 2022 work [E2E-TAD][e2e-tad].
+
 
 ## Introduction
 
@@ -11,12 +16,12 @@ TadTR is an end-to-end Temporal Action Detection TRansformer. It has the followi
 - Simple. It adopts a set-prediction pipeline and achieves TAD with a *single network*. It does not require a separate proposal generation stage.
 - Flexible. It removes hand-crafted design such as anchor setting and NMS.
 - Sparse. It produces very sparse detections (e.g. 10 on ActivityNet), thus requiring lower computation cost.
-- Strong. As a self-contained temporal action detector, TadTR achieves state-of-the-art performance on HACS and THUMOS14. It is also much stronger than concurrent Transformer-based methods.
+- Strong. As a *self-contained* temporal action detector, TadTR achieves state-of-the-art performance on HACS and THUMOS14. It is also much stronger than concurrent Transformer-based methods such as **RTD-Net** and **AGT**.
 
 ![](arch.png "Architecture")
 
 ## Updates
-[2022.3] Our new work based on TadTR is accepted to CVPR 2022. It supports fully end-to-end training from RGB images. The code will be released along with the camera ready version.
+[2022.3] Our new work [E2E-TAD][e2e-tad] based on TadTR is accepted to CVPR 2022. It supports fully end-to-end training from RGB images.
 
 [2021.9.15] Update the performance on THUMOS14.
 
@@ -109,3 +114,5 @@ The code is based on the [DETR](https://github.com/facebookresearch/detr) and [D
 ## Contact
 
 For questions and suggestions, please contact Xiaolong Liu at "liuxl at hust dot edu dot cn".
+
+[e2e-tad]: https://github.com/xlliu7/E2E-TAD
