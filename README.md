@@ -5,7 +5,7 @@ By [Xiaolong Liu](https://github.com/xlliu7), [Qimeng Wang](https://scholar.goog
 This repo holds the code for TadTR, described in the technical report:
 [End-to-end temporal action detection with Transformer](https://arxiv.org/abs/2106.10271)
 
-_The tech report is out-dated. We have significantly improved TadTR since we uploaded it to arxiv. It achives much better performance now. We'll update the arxiv version recently._ 
+_We have significantly improved the performance of TadTR since our initial submission to arxiv in June 2021. It achives much better performance now. Please refer to the latest version (v3) on arxiv._ 
 
 We have also explored fully end-to-end training from RGB images with TadTR. See our CVPR 2022 work [E2E-TAD][e2e-tad].
 
@@ -21,6 +21,10 @@ TadTR is an end-to-end Temporal Action Detection TRansformer. It has the followi
 ![](arch.png "Architecture")
 
 ## Updates
+[2022.7] Glad to share that this paper will appear in IEEE Transactions on Image Processing (TIP). Although I am still busy with my thesis, I will try to make the code accessible soon. Thanks for your patience.
+
+[2022.6] Update the technical report of this work on arxiv (now v3).
+
 [2022.3] Our new work [E2E-TAD][e2e-tad] based on TadTR is accepted to CVPR 2022. It supports fully end-to-end training from RGB images.
 
 [2021.9.15] Update the performance on THUMOS14.
@@ -105,7 +109,7 @@ The code is based on the [DETR](https://github.com/facebookresearch/detr) and [D
 ```
 @article{liu2021end,
   title={End-to-end Temporal Action Detection with Transformer},
-  author={Liu, Xiaolong and Wang, Qimeng and Hu, Yao and Tang, Xu and Bai, Song and Bai, Xiang},
+  author={Liu, Xiaolong and Wang, Qimeng and Hu, Yao and Tang, Xu and Zhang, Shiwei and Bai, Song and Bai, Xiang},
   journal={arXiv preprint arXiv:2106.10271},
   year={2021}
 }
