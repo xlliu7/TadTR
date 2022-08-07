@@ -102,7 +102,7 @@ python demo.py
 Currently we only support `thumos14`.
 
 ### THUMOS14
-[[BaiduDrive(code: adTR)]](https://pan.baidu.com/s/183VprlbKNjMb3Gr-rfmROQ)
+Download all data from [[BaiduDrive(code: adTR)]](https://pan.baidu.com/s/183VprlbKNjMb3Gr-rfmROQ) or [[OneDrive]](https://husteducn-my.sharepoint.com/:f:/g/personal/liuxl_hust_edu_cn/EsMyXDlkrTdBsikoRQSIeUsBkxJJRsplbMyIQVYotiZRIQ?e=QYgiCH).
 
 - Features: Download the I3D features `I3D_2stream_Pth.tar`. It was originally provided by the authors of P-GCN. I have concatenated the RGB and Flow features (drop the tail of the longer one if the lengths are inconsistent) and converted the data to float32 precision to save space.
 - Annotations: The annotations of action instances and the meta information of feature files. Both are in JSON format (`th14_annotations_with_fps_duration.json` and `th14_i3d2s_ft_info.json`).
