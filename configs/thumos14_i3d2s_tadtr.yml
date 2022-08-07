@@ -1,0 +1,18 @@
+# model setting
+enc_layers: 4
+dec_layers: 4
+dim_feedforward: 1024
+num_queries: 40
+
+# data setting
+dataset_name: thumos14
+feature: i3d2s
+feature_dim: 2048
+online_slice: true
+slice_len: 128
+slice_overlap: 0.75
+test_slice_overlap: 0.25
+
+# output
+output_dir: outputs/thumos14_i3d2s_tadtr
+

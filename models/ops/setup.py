@@ -51,13 +51,14 @@ def get_extensions():
 
 
     ext_modules = [
-        CUDAExtension(
-            "temporal_deform_attn.TemporalDeformableAttention",
-            get_sources(os.path.join(this_dir, "temporal_deform_attn/src")),
-            include_dirs=[os.path.join(this_dir, "temporal_deform_attn/src")],
-            define_macros=define_macros,
-            extra_compile_args=extra_compile_args
-        ),
+        # Temporal Deformable Attention, optional
+        # CUDAExtension(
+        #     "temporal_deform_attn.TemporalDeformableAttention",
+        #     get_sources(os.path.join(this_dir, "temporal_deform_attn/src")),
+        #     include_dirs=[os.path.join(this_dir, "temporal_deform_attn/src")],
+        #     define_macros=define_macros,
+        #     extra_compile_args=extra_compile_args
+        # ),
 
         CUDAExtension('roi_align.Align1D', [
             'roi_align/src/roi_align_cuda.cpp',

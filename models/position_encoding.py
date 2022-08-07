@@ -20,7 +20,7 @@ from util.misc import NestedTensor
 class PositionEmbeddingSine(nn.Module):
     """
     This is a more standard version of the position embedding, very similar to the one
-    used by the Attention is all you need paper, generalized to work on images.
+    used by the Attention is all you need paper, generalized to work on videos.
     """
     def __init__(self, num_pos_feats=256, temperature=10000, normalize=False, scale=None):
         super().__init__()

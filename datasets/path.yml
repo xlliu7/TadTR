@@ -1,0 +1,7 @@
+# set the path of features, anno file and feature info file
+
+thumos14:
+  ann_file: 'data/thumos14/th14_annotations_with_fps_duration.json'
+  i3d2s:
+    local_path: data/thumos14/I3D_2stream_Pth
+    ft_info_file: 'data/thumos14/th14_i3d2s_ft_info.json'

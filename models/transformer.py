@@ -19,7 +19,7 @@ from torch.nn.init import xavier_uniform_, constant_, uniform_, normal_
 
 from util.misc import inverse_sigmoid
 from models.ops.temporal_deform_attn import DeformAttn
-from util.config import cfg
+from opts import cfg
 
 
 class DeformableTransformer(nn.Module):
@@ -105,7 +105,7 @@ class DeformableTransformer(nn.Module):
 
         # deformable encoder
         memory = self.encoder(src_flatten, temporal_lens, level_start_index, valid_ratios, 
-            lvl_pos_embed_flatten if cfg.USE_POS_EMBED else None, 
+            lvl_pos_embed_flatten if cfg.use_pos_embed else None, 
             mask_flatten)  # shape=(bs, t, c)
 
         bs, _, c = memory.shape
@@ -232,7 +232,7 @@ class DeformableTransformerDecoderLayer(nn.Module):
         return tgt
 
     def forward(self, tgt, query_pos, reference_points, src, src_spatial_shapes, level_start_index, src_padding_mask=None):
-        if not cfg.DISABLE_QUERY_SELF_ATT:
+        if not cfg.disable_query_self_att:
             # self attention
             q = k = self.with_pos_embed(tgt, query_pos)
 
@@ -334,7 +334,7 @@ def build_deformable_transformer(args):
         dropout=args.dropout,
         activation=args.activation,
         return_intermediate_dec=True,
-        num_feature_levels=args.num_feature_levels,
+        num_feature_levels=1,
         dec_n_points=args.dec_n_points,
         enc_n_points=args.enc_n_points)
 

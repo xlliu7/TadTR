@@ -12,7 +12,11 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import division
-from models.ops.temporal_deform_attn.functions.temporal_deform_attn_func import TDAFunction
+
+from opts import cfg
+
+# if not cfg.disable_cuda:
+#     from .functions import TDAFunction
 
 import warnings
 import math
@@ -23,8 +27,6 @@ from torch import nn
 import torch.nn.functional as F
 from torch.nn.init import xavier_uniform_, constant_
 
-from .functions import TDAFunction
-from util.config import cfg
 
 
 def _is_power_of_2(n):
@@ -52,6 +54,8 @@ class DeformAttn(nn.Module):
         if not _is_power_of_2(_d_per_head):
             warnings.warn("You'd better set d_model in DeformAttn to make the dimension of each attention head a power of 2 "
                           "which is more efficient in our CUDA implementation.")
+
+        assert n_levels == 1, 'multi-level attention is not supported!'
 
         self.seq2col_step = 64
 
@@ -138,8 +142,38 @@ class DeformAttn(nn.Module):
         else:
             raise ValueError(
                 'Last dim of reference_points must be 1 or 2, but get {} instead.'.format(reference_points.shape[-1]))
-        
-        output = TDAFunction.apply(
-                value, input_temporal_lens, input_level_start_index, sampling_locations, attention_weights, self.seq2col_step)
+        if cfg.dfm_att_backend == 'pytorch' or cfg.disable_cuda:
+            # Implementation with PyTorch grid_sample operator. 
+            # Note that grid_sample only supports image inputs. We need to view the sequence as an image with height=1
+            sampling_locations = torch.cat((sampling_locations, torch.ones_like(sampling_locations)*0.5), dim=-1)
+            input_spatial_shapes = torch.stack((torch.ones_like(input_temporal_lens), input_temporal_lens), dim=-1)
+            output = deform_attn_core_pytorch(value, input_spatial_shapes, sampling_locations, attention_weights)
+        else:
+            raise NotImplementedError
+            # # CUDA implementation. You will get identical results with the pytorch implementation
+            # output = TDAFunction.apply(
+            #     value, input_temporal_lens, input_level_start_index, sampling_locations, attention_weights, self.seq2col_step)
         output = self.output_proj(output)
         return output, (sampling_locations, attention_weights)
+
+
+def deform_attn_core_pytorch(value, value_spatial_shapes, sampling_locations, attention_weights):
+    '''deformable attention implemeted with grid_sample.'''
+    N_, S_, M_, D_ = value.shape
+    _, Lq_, M_, L_, P_, _ = sampling_locations.shape
+    value_list = value.split([H_ * W_ for H_, W_ in value_spatial_shapes], dim=1)
+    sampling_grids = 2 * sampling_locations - 1
+    sampling_value_list = []
+    for lid_, (H_, W_) in enumerate(value_spatial_shapes):
+        # N_, H_*W_, M_, D_ -> N_, H_*W_, M_*D_ -> N_, M_*D_, H_*W_ -> N_*M_, D_, H_, W_
+        value_l_ = value_list[lid_].flatten(2).transpose(1, 2).reshape(N_*M_, D_, H_, W_)
+        # N_, Lq_, M_, P_, 2 -> N_, M_, Lq_, P_, 2 -> N_*M_, Lq_, P_, 2
+        sampling_grid_l_ = sampling_grids[:, :, :, lid_].transpose(1, 2).flatten(0, 1)
+        # N_*M_, D_, Lq_, P_
+        sampling_value_l_ = F.grid_sample(value_l_, sampling_grid_l_,
+                                          mode='bilinear', padding_mode='zeros', align_corners=False)
+        sampling_value_list.append(sampling_value_l_)
+    # (N_, Lq_, M_, L_, P_) -> (N_, M_, Lq_, L_, P_) -> (N_, M_, 1, Lq_, L_*P_)
+    attention_weights = attention_weights.transpose(1, 2).reshape(N_*M_, 1, Lq_, L_*P_)
+    output = (torch.stack(sampling_value_list, dim=-2).flatten(-2) * attention_weights).sum(-1).view(N_, M_*D_, Lq_)
+    return output.transpose(1, 2).contiguous()
