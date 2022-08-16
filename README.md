@@ -150,7 +150,7 @@ It will automatically use the best model checkpoint. If you want to manually spe
 python main.py --cfg CFG_PATH --eval --resume CKPT_PATH
 ```
 
-Note that the performance of the model trained by your own may be different from the reference model. The reason is that the gradient computation of the RoIAlign and Deformable Attention operators is not deterministic. Please refer to [this page](https://pytorch.org/docs/stable/notes/randomness.html) for details.
+Note that the performance of the model trained by your own may be different from the reference model, even though all seeds are fixed. The reason is that TadTR uses the `grid_sample` operator, whoses gradient computation involves the non-deterministic `AtomicAdd` operator. Please refer to [ref1](https://pytorch.org/docs/stable/notes/randomness.html) [ref2](https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch.use_deterministic_algorithms) [ref3(Chinese)](https://zhuanlan.zhihu.com/p/109166845) for details.
 
 ## Acknowledgement
 The code is based on the [DETR](https://github.com/facebookresearch/detr) and [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR). We also borrow the implementation of the RoIAlign1D from [G-TAD](https://github.com/Frostinassiky/gtad). Thanks for their great works.
