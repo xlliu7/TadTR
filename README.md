@@ -4,8 +4,8 @@
 
 By [Xiaolong Liu](https://github.com/xlliu7), [Qimeng Wang](https://scholar.google.com/citations?user=hi7AeE8AAAAJ), [Yao Hu](https://scholar.google.com/citations?user=LIu7k7wAAAAJ), [Xu Tang](https://scholar.google.com/citations?user=grP24aAAAAAJ), [Shiwei Zhang](https://scholar.google.com/citations?user=ZO3OQ-8AAAAJ), [Song Bai](http://songbai.site), [Xiang Bai](https://scholar.google.com/citations?user=UeltiQ4AAAAJ).
 
-This repo holds the code for TadTR, described in the technical report:
-[End-to-end temporal action detection with Transformer](https://arxiv.org/abs/2106.10271).
+This repo holds the code for TadTR, described in the paper
+[End-to-end temporal action detection with Transformer](https://arxiv.org/abs/2106.10271) published in IEEE Transactions on Image Processing (TIP) 2022.
 
 <!-- _The tech report is out-dated. We have significantly improved TadTR since we uploaded it to arxiv. It achives much better performance now. We'll update the arxiv version recently._  -->
 
@@ -45,7 +45,7 @@ TadTR is an end-to-end Temporal Action Detection TRansformer. It has the followi
 - [x] add model code
 - [x] add inference code
 - [x] add training code
-- [ ] support training/inference with video input
+- [x] support training/inference with video input. See [E2E-TAD][e2e-tad]
 
 ## Main Results
 - HACS Segments
@@ -123,7 +123,7 @@ After downloading is finished, extract the archived feature files inplace by `cd
 ```
 
 
-## 2.Test Pre-trained Models
+## 2.Testing Pre-trained Models
 Run
 ```
 python main.py --cfg CFG_PATH --eval --resume CKPT_PATH
@@ -169,6 +169,6 @@ The code is based on the [DETR](https://github.com/facebookresearch/detr) and [D
 
 ## Contact
 
-For questions and suggestions, please contact Xiaolong Liu at "liuxl at hust dot edu dot cn".
+For questions and suggestions, please contact Xiaolong Liu by email ("liuxl at hust dot edu dot cn").
 
 [e2e-tad]: https://github.com/xlliu7/E2E-TAD
