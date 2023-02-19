@@ -23,6 +23,8 @@ TadTR is an end-to-end Temporal Action Detection TRansformer. It has the followi
 ![](data_intro/arch.png "Architecture")
 
 ## Updates
+[2023.2.19] Fix a bug a loss caculation ([issue #21](https://github.com/xlliu7/TadTR/issues/21)). Thank [@zachpvin](https://github.com/zachpvin) for raising this issue!
+
 [2022.8.7] Add support for training/testing on THUMOS14!
 
 [2022.7.4] Glad to share that this paper will appear in IEEE Transactions on Image Processing (TIP). Although I am still busy with my thesis, I will try to make the code accessible soon. Thanks for your patience.
